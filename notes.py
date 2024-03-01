@@ -1,695 +1,184 @@
-# ___________________
-
-# L i n u x  2 0 2 3
-# ___________________
-
-  hack4u ---> codigo de verificacion: 1562-2273-5422-2885
 
 
+p y t h o n 
+___________
 
+visual code usefull shorcuts:
+    
+comentar y descomentar de golpe:
+    ctrl k comentar ctrl c
+    ctrl k descomentar ctrl u
+modo zen 
+    ctrl k z ( activar y desactivar)
+mover varias lineas de codigo arriba abajo.
+    select and alt flecha up y down 
+Tabular Izquierda: 
+select and shift tab 
+Tabular derecha
+select and tab  
 
+Quitar espacios blancos o tabs del final de linea: 
+    Ctrl e ctrl º
 
-
-
+    
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
-#                                  * * *  k i t t y  s x h d k  r o f i  p o l y b a r    * * *
+                                  * * *  p y t h o n V 2 / V 3  &  P i p 2 / P i p 3  * * *
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
-~/.config/sxhkd 
 
-ctrl enter    nueva kitty 
-ctrl alt r    run rofi 
-ctrl shift p  start polybar 
-ctrl shift s  stop polybar
-ctrl shift b  burpsuite
-ctrl shift n  firejail 
+¿como saber si el script esta escrito para python 2 o 3 ? 
 
-aqui lo que pongas con ctrl shift anda bien 
-
-~/.config/kitty 
-
-T A B S 
-n e w  t a b 
-                          ctrl shift t   new tab
-                          ctrl shift 0   zero number permite establecer el nombre de la tab de la kitty 
-                          ctrl shift .   tab a la derecha
-                          ctrl shift ,   tab a la izquierda
-                                    
-                          ctrl shift q   delete tab 
-w i n d o w s tmux 
-                          n e w  w i n d o w  
-                          ctrl shift enter 
-
-                          d e l e t e  w i n d o w 
-                          ctrl shift w 
-
-                          m o v i n g 
-                          ctrl up/down/left/right move between windows
-                          ctrl shift 1 2 3 4 ...
-                          r e s i z e      ^
-                          ctrl shift -> <- | |
-                                             v
-                           
-                          t o g g l e  l a y o u t 
-                          ctrl shift z  establece en primer plano la ventana donde te encuentras 
-                          r e o r g a n i z e  windows
-                          ctrl shift l 
-                          p a n e l  f o r w a r d 
-                          ctrl shift f 
+p y t h o n v2 / v3
+___________________
 
 
+si al abrir un script observas :
+print "loquesea" ---> python v2
+print ("lo que sea") ---> python v3
 
+python2 emplea ASCII
+python 2 division entera only  python2 y en el interprete >>> 5/3  regresa 1 
+y pones type (5/3)  regresa type int 
 
+python3 emplea Unicode 
+python 3 puede regresa float  >>> 5/3   regresa 1.666666666666666667
+y pones type (5/3)  --> regresa class float 
 
+P I P pip installs packages
+___________________________
+pip2
 
-
-
-
-
-____________________________________________________________________________________________________________________________________
-
-#                                      * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-____________________________________________________________________________________________________________________________________
-
-
-
-https://overthewire.org/wargames/bandit 
-
-
-
-e x e c u t i o n   o u t   c o d e 
-
-echo $?  
-0 <--- succesfull 
-
-diferente de 0 hay muchos 1 127 ... <--- E R R O R 
+pip3 intall pwntools
 
 ---
 
-stderr 2>/dev/null : la salida error a /dev/null
-stdout cat /etc/hosts >/dev/null : estas redirigiendo el output la salida a dev null no se veria el resultado de la ejecucion
+A TENER EN CUENTA CON PYTHON3 -c ''
 
-si ejecutas : cat /archivonoexiste > /dev/null 2>&1    esto lo que dice es redirige la salida error donde tengas la salida estandar el output 
+lo que dentro del interprete era:
+>>> variablea=True
+>>> type(variablea)
+<class 'bool'> 
+>>> if variablea:
+...     print ("verdadero!!!!")
+... 
+verdadero!!!!
 
-la forma standart es : cat /archivonoexiste &>/dev/null ni output ni error 
+fuera: 
+
+python3 -c 'variablea=True; print ("verdadero!!!!") if variablea else None'
+
+~ ❯ python3 -c 'variablea=True; print ("verdadero!!!!") if variablea else None'
+verdadero!!!!
+
+
+_________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+                                  * * *  S h e l l  C o l o r s * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+
+
+
+from colorama import init, Fore, Back, Style
+
+# Inicializa colorama
+init()
+
+# Imprime texto en diferentes colores
+print(Fore.RED + 'Este texto es rojo')
+print(Fore.GREEN + 'Este texto es verde')
+print(Fore.BLUE + 'Este texto es azul')
+
+# También puedes cambiar el color de fondo
+print(Back.YELLOW + 'Este texto tiene fondo amarillo')
+
+# Para resetear los colores
+print(Style.RESET_ALL + 'Este texto vuelve al color predeterminado')
+
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+                                  * * *  S h e b a n g  &  M o d u l e s  * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+
+
+s h e b a n g :
+#!/usr/bin/python3      
+#!/usr/bin/env python3  <--- mejor este por si no estuviese el binario de python3 en esa ruta y de esta forma 
+                             la va a buscar de env ( del path que este definido en environment )
 
 ---
 
+m o d u l e / main module 
+_________________________
+
+[moduloPrincipal.py]
+
+#!/usr/bin/env python3
+
+if __name__ == '__main__':
+	print ("soy el modulo principal")
+else: 
+	print ("NO soy el modulo principal")
 
 
+[moduloLlamante.py]
+import moduloPrincipal
 
+Si ejecutas los dos : 
 
-____________________________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________________________
+python moduloPrincipal.py ---> regresa: soy el modulo principal
+python moduloLlamente.py  ---> regresa: NO soy el modulo principal
 
-#                                      * * *  D E S C R I P T O R E S  D E  F I C H E R O   * * *
-____________________________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________________________
-
-
-
-1 default filedescriptor to stdout
-2 default filedescriptor to stderr 
-
-creas un descriptor de fichero ( necesario escritura para crearlo )
-
-exec 4 <>newFileReadWrite lectura y escritura 
-exec 4>newFileWrite lo creas escritura 
-
-lo escribes: 
-id  >&4                     
-id: write error: Bad file descriptor
-
-
-lo conviertes a read only
-exec 4<newFileWrite  lectura
-
-id  >&4                     
-id: write error: Bad file descriptor
-
-Cerrarlo
-exec 4>&-
-
-Copias entre descriptores 
-
-creamos el 7 y el 8 nuevos porque el 4 lo cerre antes:
-
-crea el 7 en modo RW y lo asocia al fichero dataFile
-~ ❯ exec 7<>dataFile
-escribe el whoami output dentro 
-~ ❯ whoami >&7 
-~ ❯ cat dataFile 
-abenito
-
-copio el descriptor de fichero 8 From/del 7 
-~ ❯ exec 8>&7
-escibo sobre el 8 
-~ ❯ id -a >&8
-
-O J O se escribe en el 7 tambien porque son copias
-~ ❯ cat dataFile
-abenito
-uid=1000(abenito) gid=1000(abenito) groups=1000(abenito),10(wheel),970(pkg-build),971(docker),984(libvirt)
-
-
-7                   8    puedes cerrar el 7 con exec 7>&- y ya no podria    7                   8
-|                   |    operar sobre el fichero, pero el ocho sigue        |                   |
-|                   |    pudiendo                                           x                   |
- ---> dataFile <----                                                              dataFile <----
-
-
-Por ultimo a la que creas la copia de un descriptor a otro puedes borrar el original 
-
-exec 8>&7- esto genera la flecha del 8 al archivo que paunta 7 y cierra siete 
-
-
----
-https://deephacking.tech/permisos-sgid-suid-y-sticky-bit-linux/#:~:text=Permiso%20SGID,-El%20permiso%20SGID&text=Si%20se%20establece%20en%20un,perteneciente%2C%20el%20grupo%20del%20directorio.
-https://www.ochobitshacenunbyte.com/2019/06/17/permisos-especiales-en-linux-sticky-bit-suid-y-sgid/
-https://www.ibiblio.org/pub/linux/docs/LuCaS/Manuales-LuCAS/SEGUNIX/unixsec-2.1-html/node56.html
-
-
-
+dado que en python dentro del mismo directorio haces un import sin especificar extension y puedes usar ese mod 
 
 
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
-#                                                 * * *  P E R M I S O S  E S P E C I A L E S  * * *
+                                  * * *  C o n v e n c i o n e s  * * *
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
 
+l o w e r  c a m e l  c a s e : funciones 
+_____________________________
 
-S t i c k y  b i t sobre directorio 
-___________________________________ 
+funciones nombres convenio: minusculasMayusculacapitalizado()
+def ejemploNombreCapitalizado()
 
-
-si tienes un dir con 777 pongamos 
-
-drwxrwxrwx pepe pepe 190 B ...... pruebasDir   <--- lo pueden escribir todos 
-  si dentro tienes un archivo tal .rw-r--r-- pepe pepe filedeprueba <--- puede ser borrado escrito por todos 
-  aunque tenga r-- en others porque prevalece el privilegio del directorio que lo contiene 
-
-
-si al directorio le pones chmod +t pruebasDir nadie lo puede escribir/borrar que no sea el propietario del fichero
-
-drwxrwxrwxt <--- la t pepe pepe 190 B ...... pruebasDir
-
-
-S U I D 
-      |
-      v
-chmod 4775 file  
-chmod u+s  file  
-
--rwsr-xr-x file 
-   ^
-   |
-
-cuidado con esto sobre binarios:
-
-~ > ls -las /usr/bin/pkexec                                                                                                                                              1m 40s root@fedorian
-32 -rwsr-xr-x 1 root root 32704 Mar 30  2023 /usr/bin/pkexec
-
-vulnerabilidad PwnKit 
-
-para encontrar más: find / -type f -perm -4000 2>/dev/null
-
-
-EXPLICACION OJO :
-
-~ ❯ ls -las /usr/bin/python3.11                                                                                                                                                           11s
-16 -rwxr-xr-x 1 root root 15872 Oct  3 02:00 /usr/bin/python3.11
-~ ❯ python3.11                 
-Python 3.11.6 (main, Oct  3 2023, 00:00:00) [GCC 13.2.1 20230728 (Red Hat 13.2.1-1)] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> import os
->>> os.setuid(0)
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-PermissionError: [Errno 1] Operation not permitted
->>> quit()
-
-
-pero si tuviera setuid :
-
-~ ❯ ls -las /usr/bin/python3.11                                                                                                                                                           53s
-16 -rwsr-xr-x 1 root root 15872 Oct  3 02:00 /usr/bin/python3.11
-~ ❯ id
-uid=1000(abenito) gid=1000(abenito) groups=1000(abenito),10(wheel),970(pkg-build),971(docker),984(libvirt)
-~ ❯ python3.11
-Python 3.11.6 (main, Oct  3 2023, 00:00:00) [GCC 13.2.1 20230728 (Red Hat 13.2.1-1)] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> import os
->>> os.setuid(0)
->>> os.system("whoami")
-root
-0
->>> os.system("bash")
-[root@fedorian ~]# id
-uid=0(root) gid=1000(abenito) groups=1000(abenito),10(wheel),970(pkg-build),971(docker),984(libvirt)
-
-te ha dado hasta una bash con root flipa!
-
-PORQUE? porque el binario tiene privilegio de ejecucion con usuario root y aunque tu no seas root 
-al ejecutar ese binario se ejecuta en contexto de root y tu puedes escalarlo 
-
-
-
-otro ejemplo: 
-
--rwsr-x--- 1 bandit20 bandit19 7868 May 7 2020 ficheroejecutable.sh 
-
-./ficheroejecutable.sh sh  <--- esto regresa una shell con root 
-                       bash -p   es lo mismo 
-
-G U I D
-      |
-      v
-chmod 2775 dir  
-chmod g+s  dir  
-
--rwxr-sr-x dir 
-      ^
-      | 
-pasa idem es bajo el contexto del grupo root 
-
-la asignacion seria chmod g+s /usr/bin/python3.9 por ejemplo 
-
-find / -perm -2000 2>/dev/null
-
-
----
-
-/etc/passwd 
-tiene una copia /etc/passwd-
-
----
-
-lsattr & chattr 
-
-~ > touch a                                                                                
-~ > lsattr a                                                                               
---------------e------- a
-~ > echo "first note" >>a                                                                  
-~ > chattr +i a                                                                           
-~ > echo "second note" >>a                                                                 
-zsh: operation not permitted: a
-~ > lsattr a                                                                               
-----i---------e------- a
-
-
-
-
-
-____________________________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________________________
-
-#                                                 * * *  C A P A B I L I T I E S  * * *
-____________________________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________________________
-
-
-https://gtfobins.github.io/
-
-/usr/sbin/mtr-packet cap_net_raw=ep
-/usr/sbin/suexec cap_setgid,cap_setuid=ep
-...
-/usr/bin/newgidmap cap_setgid=ep
-/usr/libexec/gstreamer-1.0/gst-ptp-helper cap_net_bind_service,cap_net_admin,cap_sys_nice=ep
-/var/lib/docker/overlay2/d7e2d977a07319ca7f4e598dde2e4bdfe6c2b917bfcaf76eb2dcc724333b166a/diff/usr/local/bin/kube-apiserver cap_net_bind_service=ep
-/var/lib/snapd/snap/core20/1974/usr/bin/ping cap_net_raw=ep
-
-docker ojo puede eecutar root ya ves tiene ep por todas partes 
-
-pongamos como root te das: 
-setcap cap_setuid+ep /usr/bin/python3.9 
-
-
-luego con otro usuario:
-
-~ ❯ /usr/bin/python3.6
-Python 3.6.15 (default, May 26 2023, 00:00:00) 
-[GCC 13.1.1 20230511 (Red Hat 13.1.1-2)] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> import os
->>> os.setuid(0)
->>> os.system("whoami")
-root
-0
-
-
-~ ❯ getcap /usr/bin/python3.6                                                                                                                                                             47s
-/usr/bin/python3.6 cap_setuid=ep <---- ep em setuid
-
-
-para eliminar la cap -r
-
-[root@fedorian ~]# setcap cap_setuid+ep /usr/bin/python3.6
-[root@fedorian ~]# getcap /usr/bin/python3.6
-/usr/bin/python3.6 cap_setuid=ep
-
-[root@fedorian ~]# setcap -r /usr/bin/python3.6 <---
-[root@fedorian ~]# getcap /usr/bin/python3.6
-
-
-
-
-
-
-
-
-
-
-____________________________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________________________
-
-#                                                 * * * N V I M    * * *
-____________________________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________________________
-
-
-alt u  ( ctrl z ) redo 
-0 inicio linea
-shift 4 ( $ ) ultimo caracter linea
-w desplazamient por palabras
-3w se desplaza 3 palabras a la vez
-ctrl inicio  primera linea
-dw elimina esa palabra 
-v modo VISUAL para seeccionar  
-  seleccionas con las flechas luego y ( lo copias ) 
-  esc o  crea nueva linea y luego p del copy de antes 
-
-  haces shift 4 selecciona hasta el final de linea 
-  luego j para la linea siguiente 
-  luego y para copiar 
-  o para new line 
-  p paste 
-
-j 0 .  repite la accion anterior
-
-m a c r o s 
-
-q a 
-d w ha borrado una palabra y se graba en la macro 
-j para que vaya a la siguiente linea 
-d w 
-q guarda 
-
-para repertir estas acciones 30 veces pongamos :
-30 @ a
-
-s u b s 
-
-Esc shift 7 busqueda /y pones lo que quieras buscar
-
-Esc %s/A/B  cambiara a por b  enter 
-
-
-
-
-
-
-
-
-____________________________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________________________
-
-#                                                 * * * C O M A N D O S   * * *
-____________________________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________________________
-
-
-F I N D  &  L O C A T E 
-_______________________ 
-
-
-https://www.hostinger.es/tutoriales/como-usar-comando-find-locate-en-linux/
-
-find / -user root -writabl 2>/dev/null
-
-find / -user root -executable -type f  2>/dev/null
-
-
-find / -name dex\* 2>/dev/null
-find / -name \*exdump\* 2>/dev/null
-find / -name dexdump\*.sh 2>/dev/null
-find / -name dexdump\*.sh -ls 2>/dev/null
-
-TR 
-tr '/' ' '  <--- convierte / a espacios 
-
-
-_____________________
-C R O N d  cron crond
-_____________________
-
-
-https://blog.desdelinux.net/cron-crontab-explicados/
-
-
-generator: https://www.site24x7.com/es/tools/crontab/cron-generator.html
-
-
-
------------
-N E T C A T netcat nc
------------
-
-nc servidor puerto 
-escribes loque sea 
-Wrong! Please enter the correct password 
-
-ncat  este tiene una cosa que nc no tiene y es el cifrado ssl 
-
-ncat --ssl servidor puerto 
-escribes contra y padentro!
-
-IMPORTANTE
-nc -nlvp puerto <--- levanta un puerto en la maquina 
-
-echo "lemandounapass" | nc server port 
-
-
----
-
-
----------------------------------------------------
-L e c t u r a  A r c h i v o s  E s p e c i a l e s
----------------------------------------------------
-
-cat /home/bandit1/-  <--- con ruta absoluta lo abre 
-cat ./-
-grep -r "\w" 2>/dev/null  esto hace busqueda recursiva de palabras de todos los arcvhivos poreso muestra el contenido 
-
-cat "filename with spaces" 
-cat filename\ eith\ spaces
-cat f*
-
----
-
-
------
-S S H 
------
-
-sshpass -p 'lapassword' ssh user@host -p port  bash <--- esto te regresa una bash antes de ejecutar siquiera el bashrc 
-
-F I R S T 
-authorized_keys en equipo destino, con tu publica hace que sea clave autorizada: 
-cat id_rsa.pub >authorized_keys 
-
-S E C O N D
-si tienes una clave privada id_rsa 
-ssh-copy-id -i id_rsa user@host   con esto estas autorizando en el destino a una clave privada 
-te va a solicitar la contraseña del usuario con el que conectas 
-
-derivado de esto: si COMPARTES la clave PRIVADA con un usuario, se conectara sin que se le solicite password ni nada
-ssh -i id_rsa_private user@machine 
-
-y pa dentro!
-
-LAS CLAVES PRIVADAS HAN DE DISPONER 600 permission 
-
-
----
-
-
-rev comando que reversea una cadena 
-echo -e "\n  salto de linea 
-
-find . -type f -readable ! -executable  <--- excluye exes -size 1033c <--- c para bytes -user bandit1 -group bandit2
-
-for i in $(seq 1 20); do ;done
-
-cat "filequetienenespacios entre dos columnas" | xargs <--- los reduce a 1 espacio columna A espacio columna B
-
-doc: https://www.ibidemgroup.com/edu/tutorial-sort-linux-unix/
-sort archivo | uniq  con opciones pero siempre primero un sort para que ordene el archivo y uniq funcione ok 
-
-doc : https://victorhckinthefreeworld.com/2021/10/21/el-comando-uniq-de-gnu/
-uniq -u <--- lista solo lineas unicas ( no borra duplicados como se creia )
-uniq -id  lineas duplicadas o iD para verlas
-
-strings archivo lista las cadenas imprimibles unicamente 
-
-base64 -w 0   unica linea 
-
-echo "prueba" | tee savetofile.txt ( muestra prueba y guarda la salida del pipe en el fichero 
-
-ps -eo command  ( regresa los comandos que se estan ejecutando )
-
-
-TIMEOUT a un comando en bash:
-timeout 1 bash -c "ping -c 1 192.168.1.148 &>/dev/null" && echo "[+] host activo en la red" || echo "[+] host no activo en la red"
-
-
-mktemp -d   crea un dir temporal cuando no puedes leer /tmp por lo que sea 
-
-port scanner: nmap --open -T5 -v -n -p31000-32000 127.0.0.1 
-
-
-doc: https://eltallerdelbit.com/comando-diff-ejemplos/
-diff
-
-
-stat fichero te regresa mucha info metadata del fichero fechas d eceeaccion manipulacion etc ... 
-
-watch -n 1 ls -l  para ver que esta pasando 
-
-
-m o r e  more  M A R A V I L L O S O 
-_____________
-
-more fichero  
-
-haciedno tu terminal pequeño, menos de lo que tiene que mostrar del fichero puedes "detener" more y te dice 68% por ejemplo 
-esto es la proporcion que te ha mostrado
-
-luego v    entras en modo visual 
-esc shift : puedes definir  :set shell=/bin/bash enter
-esc shift : shell  ---> te otorga la shell 
-
-
-
-s p o n g e sponge 
+s n a k e  c a s e minusculas
 __________________
 
-permite 
+def comprobar_estado_api():  <--- todo minusculas y separado con _ en P Y T H O N se suele ve esto
 
-cat file-text.txt |  awk '{print $2}' >file-text.txt   esto SIEMPRE borra el archivo origen y destino que es el mismo archivo 
+s c r e a m i n g  s n a k e  c a s e MAYUSCULAS
+_____________________________________ 
 
-cat file-text.txt |  awk '{print $2}'| sponge file-text.txt
+constantes
 
+VERSION_API = 1.0.0
+URL_API = "https://hack4u.io"  
 
-_________
-A W K awk 
-_________
+u p p er  c a m el  c a s e ::: aplica sobre clases generalmente
+___________________________
 
-cat file | awk  "/name: \"machine1\"/,/machine2:/"  <--- muestra las lineas desde el primer patron hasta el segundo patron 
-
-awk 'NF{print $NF}' ultimo argumetno linea 
-
-NR
-docker ps | awk '{if (NR!=1) print $1 ": " $(NF)}' <--- ecluye primer registro ( primera linea ) y muestra primera y ultima columna del resto de lineas
-
-docker ps | awk '{if (NR!=2) print $1 ": " $(NF)}' <--- excluye el segundo registro (segunda linea ) y muestra primera y ultima columna del resto de lineas
-
-______
-T R tr
-______
-
-echo "\"cadenaconcomillas\"" | tr -d '"'  selas pule al igual que si quieres eliminar ',' de un output '
+class NombreDeLaClase  
 
 
-_________
-S E D sed
-_________
+EXCEPCIONES:
 
-echo "             un monton de espacios delante" | sed 's/^ *//'   <--- los elimina
----
-
-
-----------
-G I T  git
-----------
-
-git log   muestra los commits 
-git show  bcd433siwf3qej4r1ro371fp8eee <--- commit para verlo desde consola 
-git branch -a  muestra branches 
-git tag 
-  secret 
-    git show secret    
-
-
-_____________
-X A R G S 
-_________
-
-xargs -I {} printf "value = %s\n" {} <g   <--- leee cada linea de un fichero y la almacena en una variable value
-
-find . -name 'loquesea' | xargs -I_ rm -fr _    <--- borra cada linea que ha sacado find 
-
-find . -name 'loquesea' -prune -exec rm -fr {} \;  lo mismo y prune es porque find sigue siendo recursivo y 
-     aun habiendo borrado luego intenta buscar en esa ubicacion
-
-
-
-para quitar el NAME 
-
-NAME 
-123454321:sdaddfafsd 
-123243433:sadffvfdvf 
-
-docker ps | tail -n+2 regresa 
-123454321:sdaddfafsd 
-123243433:sadffvfdvf 
-
-docker ps  | tail -n+2 | fzf  la salida se convierte en elegible interactivamente 
-
-instance_selected=$(k get pods | tail -n+2 | fzf)  te lo guardas 
-docker ps | awk '{if (NR!=1) print $1 ": " $(NF)}' | fzf  --height 40%   <--- esta ultima cosa es para mostrar  arriba la salida de fzf 
-
-
-
----
-
-
-
-d i s o w n & n o h u p 
-
-
-alternativa 
-
-whireshark &>/dev/null & disown   <--- es lo mismo que nohup whireshark & 
-
-
----
-
----
-w h i c h 
-
-which id
-/usr/bin/id 
-
-alternativa : command -v id
-/usr/bin/id 
-
----
-
-
-_______
-
-C U R L 
-_______
-
-curl -s -X GET https://htbmachines.github.io/bundle.js | bat -l js <--- regresa los datos en formato javascript 
-
-
+cuando quieres declarar una variable / metodos protegidos :
+_protegido ="estoy protegido una barra baja"
+cuando quieres declarar una variable / metodos privados :
+__privado ="estoy privado dos barras bajas"
 
 
 
@@ -697,232 +186,625 @@ curl -s -X GET https://htbmachines.github.io/bundle.js | bat -l js <--- regresa 
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
-#                                                 * * * A r c h  P a c m a n / P a r u * * *
+                                  * * *  C a s t i n g   * * *
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
-MANUAL : https://www.busindre.com/guia_rapida_y_completa_de_pacman_arch
+c a s t i n g 
 
-https://www.makeuseof.com/how-to-install-and-remove-packages-arch-linux/
+cadena_numero = "30"
 
+print(type(cadena_numero)) ---> str 
 
----
-
-AUR packages
-
-necesitas tener instalade base-devel y git que ya están instalados 
-pacman -S base-devel git 
-
-por ejemplo para este package: 
-git clone https://aur.archlinux.org/packages/js-beautify
-cd js-bautify 
-puedes ver lo que contiene : cat PKGBUILD
-finalmente makepkg -si  NO ROOT 
-
----
-
-
-Pacman packages 
-pacman -S <package name>
-
-U P G R A D E 
-A veces da conflictos te dice que por ejemplo no puede hacer el upgrade: 
-pacman -Syu   porque encuentra packetes ya instalados que son conflictivos 
-y te dice que estan en por ejemplo /usr/bin/normalizer 
-pues con borrarlos basta para que pueda cursar el upgrade
-
-
-
-
-
-
-
-
-
-
+cadena_numero = int(30)    ---> int
+                str
+numero_float_a_entero =int(4.0)
+                float...
+                       
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
-#                                                 * * * O P E N  P O R T S  * * *
+                                  * * *  E s t r u c t u r a s   d e  d a t o s  * * *
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
-netstat -nat 
-ss -nltp 
+RESUMEN
+lista = [1, "dos", False, [1, 4]]   --- type list. Adminten diferentes tipos de datos
+diccionario = {'manzanas': 1, 'peras': 5} --- type: dict. Almacenan pares de clave valor / no indice / SI MUTABLE
+tupla = (1, "dos", True, [1, 2, 3]) --- type: tuple. Como listas pero NO se pueden modificar, util evitar cagadas en el codigo
+conjunto = {1, 2, 3}                --- type: set.  No se acceden por indice, no hay elementos iguales, existe Union Interseccion Diferrence ... 
+                                                    utiles para depurar listas eliminar duplicados ... con un "casting"
+                                                    no importa el orden
+---                                        
+
+/////////
+L i s t a  no_repeticiones = list(set(my_lista_repetida)) 
+/////////
 
 
-cat /proc/net/tcp 
+se define con [] ---> se referencia con ()
 
-[root@fedorian tmp]# cat /proc/net/tcp
-  sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode                                                     
-   0: 00000000:14EB 00000000:0000 0A 00000000:00000000 00:00000000 00000000   193        0 24551 1 00000000b815e3ea 100 0 0 10 5                     
-   1: 0100007F:0277 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 29724 1 00000000870565f3 100 0 0 10 0                     
-   2: 0100007F:170C 00000000:0000 0A 00000000:00000000 00:00000000 00000000   107        0 2469470 1 00000000efc878be 100 0 0 10 0                   
-   3: 00000000:006F 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 2465 1 000000000625234e 100 0 0 10 0                      
-   4: 00000000:0386 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 1963592 1 00000000f8923481 100 0 0 10 0                   
-   5: 017AA8C0:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 30152 1 000000009f0e1800 100 0 0 10 5                     
-   6: 3600007F:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000   193        0 24560 1 000000001159d6e5 100 0 0 10 5                     
-   7: 0164A8C0:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 34141 1 00000000dd060878 100 0 0 10 5                     
-   8: 3500007F:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000   193        0 24558 1 00000000b37904db 100 0 0 10 5                     
-   9: 8601A8C0:83EC FB025DB9:01BB 01 00000000:00000000 02:00000747 00000000  1000        0 2707418 2 000000002310df6a 22 4 0 10 -1                   
-  10: 8601A8C0:DC3C 5DF36B22:01BB 01 00000000:00000000 02:00002D44 00000000  1000        0 2707891 2 0000000026c81998 20 4 31 10 -1                  
-  11: 8601A8C0:D82A 9A8D4F28:01BB 01 00000000:00000000 02:00000CB4 00000000  1000        0 2712700 2 00000000aaaeb792 37 4 29 7 7                    
-  12: 8601A8C0:9AF0 6EC8FA8E:01BB 01 00000000:00000000 00:00000000 00000000  1000        0 2710924 1 0000000071fd1972 20 4 30 10 -1                  
-               ^
-               |
-               son puertos esta columna con python le pones 0x delante y lo convierte
-
-[root@fedorian tmp]# python
-Python 3.11.6 (main, Oct  3 2023, 00:00:00) [GCC 13.2.1 20230728 (Red Hat 13.2.1-1)] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> 0x14EB
-5355
->>> 
-
-y con ibase i obase:
-
-[root@fedorian tmp]# for i in `cat /proc/net/tcp | cut -d ':' -f 3| cut -d ' ' -f1 |sort -u |  xargs`;do echo -e "puerto en HEX : ${i} ---> $(echo "obase=10; ibase=16; ${i}"| bc) - open"; done
-puerto en HEX : 14EB ---> 5355 - open
-puerto en HEX : 0277 ---> 631 - open
-puerto en HEX : 170C ---> 5900 - open
-puerto en HEX : 006F ---> 111 - open
-puerto en HEX : 0386 ---> 902 - open
-puerto en HEX : 0035 ---> 53 - open
-puerto en HEX : 0035 ---> 53 - open
-puerto en HEX : 0035 ---> 53 - open
-puerto en HEX : 0035 ---> 53 - open
-puerto en HEX : 9306 ---> 37638 - open
-puerto en HEX : ECB6 ---> 60598 - open
-puerto en HEX : E10E ---> 57614 - open
-puerto en HEX : DC3C ---> 56380 - open
+        22 80 443 ... 
+        ^  ^  ^
+        |  |  |
+indice  0  1  2   ---
 
 
-O por medio de : 
+my_ports = []
 
-le mandas una cadena vacia a un puerto y si esta abierto al concatenar con && se ejecuta el echo porque 
-el $? = 0 codigo de estado ok 
-en caso de  estar cerrado regresara algo <> 0 por lo que el && no ejecutara el echo 
+my_ports.append(22) 
+my_ports.append(80)
+my_ports.append(443)
 
-(echo '' > /dev/tcp/127.0.0.1/$port) 2>/dev/null && echo "[+] $port - OPEN"
+
+otra opcion : my_ports +=[11, 22]
+
+print(my_ports[0]) ---> 22 
+      my_ports[2]  ---> 443
 
 
 
 
+Otra opcion : : :
+for port in my_ports:
+    print("Puerto: "+ str(port))
+    otra opcion
+    print(f"Puerto " {port}")
+#-->fuera del bucle ya Sin tabular
+print (f"\n[+] La lista tiene un total de {len(my_ports)} elementos")
 
-____________________________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________________________
+La lista puede predefinirse por medo de : 
+my_ports = [22, 80, 443, 8080, 445, 445]  <--- Lista contempla repeticiones
 
-#                                                 * * * H E X  B A S E 64  C E S A R  * * *
-____________________________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________________________
+Ordenar: my_ports = sorted(my_ports)
+         my_ports.sort() 
+Borrar: 
+    Para borrar por indice: del my_ports[0]
+    Para borrar por elemento: my_ports.remove(22)
+    Para borrar el ultimo elemento my_ports.pop()
+    Para borrar un elemento concreto my_ports.pop(1)
+    Para borrar todos elementos: my_ports.clear() ---> print(len(my_ports)) == 0 
 
------------------------
-C i f r a d o  C E S A R
-------------------------
+Insertar:
+    my_ports[2] = "334" inserta en la posicion 2 pero elimina el elemento que había 
+    my_ports.insert(2, "334") este no, lo mete en la 2 y el que había en la 2 pasa al tres
 
+Copiar listas:
+    copia_lista = list(original_lista)
+    copia_lista = original_lista[:]
+    
+Concatenar listas
+lista1 = ["uno", "dos"]
+lista2 = ["tres", "cuatro"]
+lista1.extend(lista2)
 
-rot <--- rota x posiciones de la a-z por ejmplo lo que es una G era una T eso es un rot13 en online hay rotatorios online
+---> uno dos tres cuatro
+        
+Reverse list: ---> <---- cambia de orden la lista 
+        lista.reverse()
 
-a b c d e f g h i j k l m n ñ o p q r s t u v w x y z 
+Rangos: my_ports[0:3] elementos desde indice 0 al 3 [22, 80, 443, 8080, 445, 445]
+                                                     ^   ^   ^    ^
+                                                     |   |   |    |
+                                                     0   1   2    3
+        my_ports[:3] ---> 22   80  443 
+        my_ports[3:] ---> 8080 445 445
+        my_ports[:2] ---> 22   80  443 
+        my_ports[-1] ---> 445  es el último elemento
+        my_ports[2:4] --> 443 8080 445
+Indice: my_ports.index(443) ---> regresara 2 pero si hay repetidos regresa la primera ocurrencia
 
-<----------- 23 posiciones 
-esto es f e d c b a z y x w v u t  por lo que lo que es una g era una t originalmente 
+I t e r a r:
+(enumerate recibe indice valor)
+for i,port in enumerate(my_ports): 
+    print(f"{i} ::: {port}")  
 
-cat file | tr '[G-ZA-Fg-za-f]' '[T-ZA-St-za-s]' y te lo hace 
+indice valor 
+0      22
+1      80
+2      443
+...    ---
 
-esto es rot13 
+while i < len(my_pots):
+    print(my_ports[i])
+    i += 1
 
-tambien lo puedes hacer así :
-a b c d e f g h i j k l m n
-                          13 
-cat file | tr '[A-Za-z]' '[N-ZA-Mn-za-m]'
+mayusculas 
+attacks = ["Phising", "DDoS", "SQL Injection", "Man in the middle", "Cross-Site Scripting"]
+attacks_uppercase = [attack.upper{} for attack in attacks]
+alterar valor
+minusculas 
+attacks_uppercase = [attack.lower{} for attack in attacks]
 
+z i p  ( aplica una combinatoria )
+names = ["Manolo", "Pedro","Ramón"]
+edades = [27, 25, 23]
 
-------------------------------
-H E X A D E C I M A L  f i l e  
-------------------------------
-ejemplo: cat /etc/hosts 
-
-si le haces un | xxd   ---> 
-
-[root@fedorian power]# cat /etc/hosts | xxd 
-00000000: 3132 372e 302e 302e 3120 2020 6c6f 6361  127.0.0.1   loca
-00000010: 6c68 6f73 7420 6c6f 6361 6c68 6f73 742e  lhost localhost.
-00000020: 6c6f 6361 6c64 6f6d 6169 6e20 6c6f 6361  localdomain loca
-00000030: 6c68 6f73 7434 206c 6f63 616c 686f 7374  lhost4 localhost
-00000040: 342e 6c6f 6361 6c64 6f6d 6169 6e34 2077  4.localdomain4 w
-00000050: 7777 2e6e 6769 6e78 6b38 732e 6c6f 6361  ww.nginxk8s.loca
-00000060: 6c0a 3a3a 3120 2020 2020 2020 2020 6c6f  l.::1         lo
-00000070: 6361 6c68 6f73 7420 6c6f 6361 6c68 6f73  calhost localhos
-00000080: 742e 6c6f 6361 6c64 6f6d 6169 6e20 6c6f  t.localdomain lo
-00000090: 6361 6c68 6f73 7436 206c 6f63 616c 686f  calhost6 localho
-000000a0: 7374 362e 6c6f 6361 6c64 6f6d 6169 6e36  st6.localdomain6
-000000b0: 0a31 3932 2e31 3638 2e31 3232 2e36 3720  .192.168.122.67 
-000000c0: 206d 310a 3139 322e 3136 382e 3132 322e   m1.192.168.122.
-000000d0: 3230 3720 7731 0a31 3932 2e31 3638 2e31  207 w1.192.168.1
-000000e0: 3232 2e33 3820 7732 0a31 3932 2e31 3638  22.38 w2.192.168
-000000f0: 2e31 3232 2e31 3037 206d 320a 3139 322e  .122.107 m2.192.
-00000100: 3136 382e 3130 302e 3133 3020 616e 7369  168.100.130 ansi
-00000110: 626c 6531 200a 3139 322e 3136 382e 3130  ble1 .192.168.10
-00000120: 302e 3135 3120 616e 7369 626c 6532 0a    0.151 ansible2.
-
-
-despues un xxd -ps se queda con la parte central luego xargs una sola linea y el tr para quitar espacios :
-
-cat /etc/hosts | xxd -ps | xargs | tr -d ' ' >/tmp/etcHostHex.file
-
-
-recuperas:
-
-[root@fedorian power]# cat /tmp/etcHostHex.file | xxd -ps -r
-127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 www.nginxk8s.local
-::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
-192.168.122.67  m1
-192.168.122.207 w1
-192.168.122.38 w2
-192.168.122.107 m2
-192.168.100.130 ansible1 
-192.168.100.151 ansible2
-
-
-tambien puedes hacer -r en xxd sin ps a un archivo completo
-
-l i s t  o f  s i g n a t u r e s  H E X 
-https://en.wikipedia.org/wiki/List_of_file_signatures
-
-
-por ejemplo abres con ghex un archivo HEX 
-
-1F 8B<--- estos son los dos primeros magic numbers 
-1F 8B	␟‹	0	gz tar.gz	GZIP compressed file[53]  INDICA QUE SE TRATA DE UN ARCHIVO COMPRIMIDO
----
-
-NUMERO USUARIOS SYSTEMA
-_______________________
-
-who -q 
-o 
-finger
-
-
-
-P A R R O T  U P G R A D E 
-__________________________ 
-
-
-parrot-upgrade   ( SOLO HACER D ESTA MANERA EN PARROT NADA DE apt upgrade que te lo fundes )
-
+for name, edad in zip(names, edades):
+    print(f"{name} tiene {edad} años")
+    
+---> Manolo tiene 27 años
+---> Pedro tiene 25 años 
+---> ...
 
 ---
 
 
+ 
+Esto crea una nueva lista con las posiciones del elemento valor == 445 en este caso 4,5 
+[22, 80, 443, 8080, 445, 445]
+                      ^    ^
+                      |    |
+                      4    5
+
+indices_valor_445 = [x for x,y in enumerate(my_ports) if y == 445 ] 
+print(indices_valor_445)
+[4,5]
+
+Contar elementos: my_ports.count(445) ---> regresa 2 porque hay dos elementos = a 445
+
+Eliminar duplicados: 
+1.- ordena my_ports = sorted(my_ports)
+2.- lo cambia a set(my_ports)
+    la cambia de tipo a SET y como en set no puede haber elementos duplicados ya estaría.
+3.- type(set(my_ports)) ---> <class 'set'>
+Conclusion: my_ports = list(set(my_ports)) ---> ese list lo vuelve a dejar en lista pero sin duplicados 
+
+
+Operaciones - + / * media 
+
++ sum(my_ports)
+media=sum(my_ports)/len(my_ports) <--- len numero de elementos
+para quitar decimales que solo muestre 3 : round(sum(my_ports) / len(my_ports), 3)
+
+#funciones
+juegos = ["Super Mario Bros", "Zelda: Breath of the Wild", "Cyberpunk 2077"]
+
+
+////////////
+
+T U P L A S NO SE PUEDEN MODIFICAR POR ESO EXISTEN ---> Para modificarla hay que crear una nueva 
+
+////////////
+
+example = (1, "test", 3, True, [1, 2, 3], 4) <--- puede contener diferentes tipos de datos como las listas
+print(example[0])  <--- va como en una lista 
+              -1   <--- ultimo elemento 
+             [1:3] <--- rangos ...
+No puedes modificar la tupla : example[1] = 8 <--- INMUTABLE no permite insert(), exetend(), remove(), append()
+
+mi_tupla1 = (1, 2, 3, 4)
+a, b, c, d = mi_tupla
+
+print(a) ---> 1
+print(b) ---> 2
+
+print(len(mi_tupla1)) ---> longitud 
+
+mi_tupla2 = mi_tupla1*2 ---> aumenta la tupla al doble de valores 
+mi_tupla3 = mi_tupla1 + mi_tupla2
+
+numeros_pares = tuple(i for i in my_tupla1 if i % 2 == 0)
+                      ^     ^
+                      |_____|
+print(numeros_pares)
+
+
+
+////////////
+S E T        No esta ordenado no tiene indice y no admite duplicados 
+////////////
+mi_conjunto = {1, 2, 3}
+print(type(my_conjunto)) ---> type: set
+
+a d d :: insertar un elemento: mi_conjunto.add(8) ---> {8, 1, 2, 3} no esta ordenado 
+u p d a t e :: insertar multiples elementos : mi_conjunto.update({4, 5, 6}) ---> {1, 2, 3, 4, 5, 6}
+
+borrar elemento : mi_conjunto.remove(3) ---> borra el elemento que vale 3
+                             .discard como remove pero si no existe no peta
+                             .clear() ---> elimina todos elementos del conjunto
+intersection
+c1 = {1, 2, 3, 4, 5}
+c2 = {3, 4, 5, 6, 7}
+cfinal = c1.intersection(c2) ---> 3 4 5 
+
+
+union ( sin repetidos / no esta permitido)
+cfinal =c1.union(c2) ---> {1, 2, 3, 4, 5, 6, 7}  <--- ordenado de casualidad
+
+Subconjunto?
+c1 = {1, 2, 3}
+c2 = {1, 2, 3, 4, 5}
+print( c1.issubset(c2)) ---> True / False
+
+Differences ( elementos fuera de la interseccion) cfinal = c1.difference(c2)
+
+U S O S sobre listas 
+1.- no repetidos en una lista usamos set 
+mi_lista = [1, 2, 3, 4, 5, 1, 2, 3]
+
+no_repeat= set(mi_lista)
+print(no_repeat) ---> {1, 2, 3, 4, 5}
+
+Y otra vez a lista : no_repeat = list(set(mi_lista)) ---> ya esta en lista y sin elementos duplicados
+
+2.- Es más óptimo/eficiente buscar en un conjunto que en una lista.
+mi_conjunto = set(range(10000))
+print(1234 in mi_conjunto)  ---> esto es mucho mas eficiente que recorrer una lista
+
+
+ 
+///////////////////////
+D I C C I O N A R I O S almacenan pares de clave valor / no indice / SI MUTABLE
+///////////////////////
+
+midicc = {"nombre": "abr", "edad": 28, "isla": "Tenerife"}
+print(midicc["nombre"]) ---> abr
+
+for key, value in midicc.items():
+    print(f"La clave : {key} tiene el valor {value}")
+print(f"La longitud del dicc es: {len(midicc)}")
+
+#limpiar contenido 
+midicc.clear()
+
+
+
+update : midicc["nombre"] = "alberto"
+insert : midicc["profesion"] = "musico" <--- como no existe no modifica sino que inserta
+delete: del midicc["edad"]
+
+ver si un elemento existe: 
+if "nombre" in midicc:
+   print("existe")
+   
+
+cuadrados ={x: x**2 for i in range(6)}
+print(cuadrados)    ---> {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+print(cuadrados[5]) ---> 25
+
+#g e t 
+print(midicc.get("Nomber", "No encontrado"))
+                    ^
+                    \_ esta clave no existe te imprime lo que hay a la derecha 
+#u p d a t e 
+midicc1 = {"nombre": "abr", "edad": 28, "isla": "Tenerife"}
+midicc2 = {"nombre": "alberto", "edad": 47, "isla": "Menorca"}
+midicc1.update(midicc2) ---> concatena, adiciona elementos del dicc2 al dicc1
+
+#complex dicc
+
+my_dict = {
+        "nombre": "albert",
+        "hobbies": {"primero": "bajo electrico", "segundo": "musica electronica"},
+        "edad": 28 
+}
+
+len vale 3 elementos 
+print(my_dict["edad"]) ---> 28
+print(my_dict["hobbies"]["primero"]) ---> musica
+
+#only keys
+for element in my_dict.keys: --- Es lo mismo
+for element in my_dict:      --- claves
+    print(element) ---> nombre hobbies edad
+
+#only values
+for element in my_dict.values():
+    print(element) ---> albert  {"primero": "bajo electrico", "segundo": "musica electronica"}  28
+
+#Los dos clave valor 
+
+for key, value in my_dict.items():
+    print(f"clave: {key} valor: {value}")
+    
+#formas de representar 
+clientes = {
+        "Super Mario Bros": {"Marcelo", "Marcela"},
+        "Final Fantasy VII": {"Lucía", "Manolo"}
+}
+MiJuego="Final Fantasy VII"
+#j o i n ---> para representar con un separador concreto en este caso una coma
+print(f"\t[+] CLientes que han adquirido el juego: {', '.join(clientes["MiJuego"])}")
+---> Lucía, Manolo
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
-#                                                 * * * G R E P   * * *
+                                  * * *  O p e r a d o r e s  &  O p e r a c i o n e s  * * *
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
+NUMEROS
+#!/usr/bin/env python3 
+numero1 = 2
+numero2 = 3
+resultado = numero1 + numero2 
+print (numero1 + numero2)
+print (resultado) 
+
+- * / print (round(resultado, 2)) muestra dos decimales
+% el resto de la división
+potencias con ** 
+numero1 ** numero2  esto es dos elevado a 3 = 8 
+
+CADENAS 
+primera="Hola"
+segunda=" "
+tercera="Mundo"
+
+print (primera + segunda + tercera) ---> Hola Mundo
+print(primera*3)                    ---> HolaHolaHola
+print(primera[0]*3)                 ---> HHH 
+print(primera[1]*2)                 ---> oo
+print(tercera[0:3]*2)               ---> MundMund
+
+LISTAS
+odd_numbers = [1, 3, 5, 7, 9]
+even_numbers = [2, 4, 6, 8]
+result = odd_numbers + even_numbers ---> [1, 3, 5, 7, 9, 2, 4, 6, 8, 10]
+Sumar los valores: 
+ZIP hace tuplas por indices de lista, el primer elemento de la lista 1 con el primero de la lista 2... 
+si las listas son desiguales en numero de elementos, forma tuplas hasta que puede, en este caso 
+el 9 no formaria tupla:
+(1, 2)
+(3, 4)
+(5, 6)
+(7, 8)
+
+result = zip(odd_numbers, even_numbers) 
+for element in result:
+    print(element)
+    #print(type(element)) ---> class tuple
+
+(1, 2)
+alterar valor
+(3, 4)
+(5, 6)
+(7, 8)
+
+Para finalmente sumar las tuplas entre sí : Map
+
+result = map(sum, zip(odd_numbers, even_numbers))
+que lo meta en una nueva lista :
+result = list(map(sum, zip(odd_numbers, even_numbers)))
+
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+                                  * * *  S t r i n g  F o r m a t i n g  * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+
+formatear el resultado : un numero ? 35000000 35 millones para leerlo mejor 35.000.000 --->
+print("{:,}".format(resultado)) no permite . 35,000,000
+         ^                                 ^
+         |                                 |
+          \________________________________/
+          
+print("{:,}".format(resultado).replace(",", "."))  ---> 35.000.000
+                                          ^
+                                          |
+                                          separar
+
+#!/usr/bin/env python3
+
+name="A"
+surname="BenRod"
+age=47 
+
+dos cadenas :
+print("My name is %s and my surname is %s" % (name, surname )) ---> My name is A and my surname is BenRod
+Una cadena y un numero: 
+print("My name is %s and my age is %d" % (name, age )) ---> My name is A and my age is 47
+                                   ^
+                                   si no lo especificas y pones un %s es como un str pero no es conveniente
+                                   ya que es un int
+Sin tipo de dato: 
+print("Hola, soy {}! y tengo {} años".format(name,edad))
+Con indices:
+print("Hola, soy {0}! y tengo {1} años. Mi nombre es {0}".format(name, edad))
+                  ^            ^                                   ^
+                  A            47                                  A
+Sin Format ni tipo:
+print(f"Hola, soy {name} y tengo {age} años")
+      ^
+      necesario indicar f strings 
+
+######################################### String formating advanced ##
+suma enteros 
+a = 5
+b = 7 
+print(f"La suma de {a} + {b} es {a + b}")
+
+---
+#strip
+cadena = "    hola con espacios   \n\t"
+print(cadena.strip()) <--- elimina espacios a las dos direcciones, saltos de linea, tabs ...
+
+#lower upper replace
+cadena = "Hola mUndo!!"
+print(cadena.lower())
+print(cadena.upper())
+print(cadena.replace('o', 'x')) #donde haya o escribes x
+
+#split
+cadena = "Hola Mundo test"
+nueva_cadena = cadena.split()
+print(nueva_cadena) ---> ['Hola', 'Mundo', 'test'] ---> crea una lista con delimitador espacio por defecto 
+
+cadena = "Hola:Mundo,test"
+nueva_cadena = cadena.split(':')
+print(nueva_cadena) ---> ['Hola', 'Mundo,test'] ---> delimitador : 
+
+print(nueva_cadena[0])
+
+
+#startswith/endswith 
+s = "hola mundo"
+print(s.startswith('h')) ---> True
+        endswith
+#capitalize
+print(s.capitalize()) ---> Hola mundo 
+                           ^
+#tittle
+print(s.title()) ---> Hola Mundo 
+                      ^    ^
+#swapcase
+s = "HolA MundO"
+print(s.swapcasee()) ---> hOLa mUNDo"
+
+#isalpha ( compuesta por caracteres del alfabeto)
+s = "HolA MundO"
+print(s.isalpha()) ---> True
+
+#isdigit 
+print(s.isdigit()) ---> False
+
+#isspace islower istitle... 
+
+#find
+print(s.find("Mundo")) ---> 5 donde comienza la cadena error es -1 ( si no existe lo que buscas )
+
+#index devuelve una excepcion si no existe por ejemplo 
+print(s.index("ggg"))
+
+#count 
+s = "Esto es una prueba para contar el total de caractere e que hay en la frase"
+print(f"\n[+] Total de veces ue sale el caracter 'e': {s.count('e')}")
+
+#join 
+# lista de cadenas
+lista_cadena = ["Hola", "Mundo"]
+print (' '.join(lista_cadena)) --->Hola Mundo
+
+nombres = ["Laura", "Gema", "Manolo"]
+print(f"\n[+] Los nombres son: {'# '.join(nombres)}") ---> Laura# Gema# Manolo#
+
+
+#replace 
+c = "eliminando, comas, de la cadena"
+print(c.replace(',',''))
+
+#maketrans() y translate() para reemplazo avanzado 
+
+s = "Vamos a trabnsformar una cadena"
+tabla = str.maketrans('aeu', 'zpX') ---> Vzmos z trzbnsformzr Xnz czdpnz 
+nueva_cadena = s.translate(tabla)
+print(nueva_cadena)
+
+
+
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+                                  * * *  D a t e T i m e  * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+
+#!/usr/bin/env python3
+
+import datetime 
+
+fecha = datetime.date(2024, 5, 7)
+print(fecha) ---> 2024-05-07 ( se ve como una fecha )
+
+hora = datetime.time(14, 15, 15) ---> 14:15:15
+fecha_hora = datetime.datetime(2024, 5, 7, 14, 15, 15) ---> 2024-05-07 14:15:15
+
+now = datetime.datetime.now()
+print(now) ---> 2024-01-09 07:59:17.833097
+
+año = now.year
+.        .month
+.        .day 
+.        .hour
+.        .minute
+.        .second
+
+
+
+
+
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+                                  * * *  R e g u l a r  E x p r e s i o n s  * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+#ocurrencias simples
+import re 
+text = "una cadena por ejemplo"
+matches = re.findall("e",text)
+print(matches) ---> regresa las ocurrencias de e en una lista ['e','e']
+
+
+text = "Mi gato está en el tejado y mi otro gato está en e jardin" 
+matches = re.findall("gato", text)
+print(matches)   ---> ['gato','gato'] <--- regresa lista con el patrón coincidente 
+
+# fechas
+text = "Hoy estamos a fecha 10/10/2023, mañana estaremos a 11/10/2023" 
+matches = re.findall("\d{2}\/\d{2}\/\d{4}", text)
+                        ^           ^
+                        |           |
+                dos digitos         escapa las barras
+print(matches)   ---> ['10/10/2023','11/10/2023'] <--- regresa lista con el patrón coincidente 
+
+
+text = "Los usuarios pueden contactarnos a soporte@hack4u,io o a info@hack4u.io"
+
+matches = re.findall("",text)
+
+
+#pretendes encontrar los dos correos dentro de la cadena
+text = "Los usuarios pueden contactar a soporte mediante soporte@loquesea.com o a info@loquesea2.loquesea"
+
+
+\w ---> aZ0..9 
+\w+ indica más caracteres de este tipo 
+
+matches = re.findall("(cadena)@(cadena)", text )
+                         v        v
+matches = re.findall("(\w+)@(\w+\.\w{2,})", text)
+                                      ^dos de minimo .io .es pero pueden ser muchos .com  .loquesea
+                                      
+print(matches) ---> [('soporte','loquesea.com', ('info', 'loquesea2.loquesea'))]
+      lista de tuplas                     dos tuplas               
+
+
+#sub 
+texto = "Mi gato está en el tejado y mi perro está en el jardín"
+nuevo_texto = re.sub("gato", "perro", texto )
+print(nuevo_texto) ---> Mi perro está en el tejado y mi perro está en el jardín
+                           _____
+#split 
+texto = "Campo1,Campo2,Campo3"
+nuevo_texto = re.split(",", texto )
+print(nuevo_texto) ---> ['Campo1','Campo2','Campo3'] <--- lista d eelementos diferentes separados por ,
+print(nuevo_texto[2]) ---> Campo3
+
+#validar correo 
+
+import re
+def validar_correo(correo):
+    patron = "[A-Za-z0-9._+-]+@[a-za-z0-9]+\.[A-Za-z]{2,} <--- 2 o más .io .com ..."
+                             ^
+                             |
+        conjunto de caracteres
+        de este tipo de la a a la z barra baja + o menos 
+        estos simbolos son posibles 
+    if re.findall(patron, correo):
+        return True
+    else
+        return False
+    
+print(validar_correo("loquesea@loquesea44.io"))
+
+
+    #explica comieno y acaba con grep para luego añadir al patron anterior \b
     #contiene la palabra amor 
     grep 'amor' fichero 
     regresa palabras que continen amor por la izq y por la der ---> amiamornoleimporta22223
@@ -949,413 +831,1083 @@ ________________________________________________________________________________
                 | linea
 
     awk 'NR==3347' fichero ---> regresa amor 
+
+
+
+quedando el patron con: patron = r"\b[A-Za-z0-9._+-]+@[a-za-z0-9]+\.[A-Za-z]{2,}\b" así esta más ajustado 
+porque defines con \b el comienzo y el acaba con 
+
+
+# dentro de un bucle para recorrer por patrones de búsqueda re.finditer
+
+text = "Hoy estamos a fecha 10/10/2023, mañana estaremos a 11/10/2023" 
+patron = r"\b()\b"
+              v
+patron = r"\b(\d{2}\/\d{2}\/\d{4})\b"
+print(re.findall(patron, texto)) ---> ['10/10/2023','11/10/2023'] Si quieres iterarlos 
+
+
+for match in re.finditer(patron, texto):
+    print(match)                              __________
+                                             |          |
+python regresa dos objetos:                  v          |
+<re.Match object; span=(18, 28), match='10/10/2023'>    |
+<re.Match object; span=(50, 60), match='11/10/2023'>    |
+                                                        |
+                                                        |
+print(match.group(0)) ----------------------------------
+
+y lo de (18, 28) es la posicion donde se encuentra donde comienza y donde termina el match dentro del texto entregado 
+
+print (f"La fecha es: {match.group(0)}, la cual comienza en la posición {match.start()} y finaliza en la posición {match.end()}")
+
+|                           ^
+|                           muestra el group(0) todos los matches
+|_____> La fecha es 10/10/2023, la cual comienza en la posición 18 y finaliza en la posición 28
+        La fecha es 11/10/2023, la cual comienza en la posición 50 y finaliza en la posición 60
+
+
+
+
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
-#                                                 * * * S C R I P T S  * * *
+                                  * * *  B U C L E S  * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+for i in range(5): <--- 0 .. 4  
+    print (i)
+names = ["rosa","violeta","leonor"]
+for name in names:
+    print(name)
+for indice,nombre in enumerate(nombres): <--- enumerate regresa 0 rosa 1 violeta ... 
+    print(f"Nombre [{indice+1}]: {nombre}") 
+#Diccionario
+frutas = {"manzanas": 1, "platanos": 5, "kiwis": 3}
+for fruta,cantidad in frutas.items: <--- para iterar un Diccionario
+    print (f"Hay {cantidad} unidades de la fruta {fruta}")
+
+
+#bucles anidados
+my_List = [[1, 4, 5], [2, 6, 8], [1, 2, 3]] <--- Lista de listas
+for element in my_list:
+    print(f"Sublista: {element}\n")
+    for subelement in element:
+        print(subelements)
+
+#bucles de compresion (for)
+odd_list = [1, 3, 5, 7, 9]
+#quiero una lista que contenga el cuadrado de cada elemento de la anterior [1, 9, 25, 49, 81]
+cuadrado = [i ** 2 for i in odd_list]
+
+---
+
+#b r e a k 0 1 2 3 4 5
+for i in range(10):
+    print(i)
+    if i == 5:
+        break
+        
+#c o n t i n u e 0 1 2 3 4 6 7 8 9 
+for i in range(10):
+
+    if i == 5:
+       continue  <----
+                     |
+    print(i)     <---- no va a imprimir el 5 continua con la siguiente iteracion
+
+#e l s e  en bucles CHIVATO DE QUE EL BUCLE HA IDO BIEN
+for i in range(10):
+
+    if i == 10:
+        break
+else: #<--- este else es del bucle no del if de arriba que seria tabulado
+    print("Bucle concluido exitosamente")
+
+como el rango es de 0 1 2 ... 9  <--- nunca llega al 10 pero termina ok 
+
+en cambio range(11) <--- aqui no termina ok 
+
+#w h i l e 
+---
+
+i=0
+while i <10:
+    if i == 10:
+      break
+    i += 1
+else:
+    print("El bucle terminó normalmente") # este llega a 10 incremanta evalua y sale pero imprime el else No pasa por el break
+# i < 16:  hace el break no imprime el else
+
+---
+
+#I F 
+# if raro dentro de una cadena
+edad=17
+mensaje = "Eres mayor de edad" if edad =18 else "Eres menor de edad"
+print(mensaje) # imprime Eres menor de edad
+
+
+#AND /OR
+edad = 20
+nacionalidad = canaria 
+
+if edad >=18 and nacionalidad == "canaria":
+    print ("Puedes votar en Canarias")
+else:
+    print ("no Eres canario cabrón!")
+    
+#condicional anidado
+if edad>= 18:
+  if nacionalidad == "canaria":
+    pass # <--- esto es no hace nada pero pasa continua 
+
+
+---
+
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+                                  * * *  F U N C I O N E S  * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+#parametros
+def saludo(nombre):
+    print(f"\nHola {nombre}")
+
+saludo("Manu!")
+
+#retorno de valor 
+def suma (x, y):
+    return x + y
+print (f"\n[+] La suma de ambos valores es {suma(9, 3)}")
+
+#ambito de bariables
+las variables dentro de las funciones son locales a las funciones
+las variables fuera de las funciones son globales por lo que su valor 
+puede ser consumido / modificado FUERA de las funciones
+
+variable = "soy global"
+def cambioelvalor():
+    variable ="soy local"  #<--- ESTA NO ES LA VARIABLE GLOBAL 
+    print (variable)
+
+cambioelvalor()
+print(variable)
+
+---> soy local 
+---> soy global
+
+#PERO SI CAMBIAS EL AMBITO ...
+
+variable = "soy global"
+def cambioelvalor():
+    global variable ="soy local"  #<--- ESTA SI ES LA VARIABLE GLOBAL 
+    print (variable)
+
+cambioelvalor()
+print(variable)
+
+---> soy local 
+---> soy global
+
+---
+
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+                                  * * *  F U N C I O N E S  L A M B D A   * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+cuadrado = lambda x: x**2
+print(cuadrado(7)) ---> 49
+
+
+suma = lambda x, y: x + y
+print(suma(1, 2)) ---> 3
+
+
+En estructura de datos, hay que pensar qué regresa la estructura de datos,
+
+numeros = [1, 2, 3, 4, 5] ---> regresa un elemento x  
+
+
+M A P 
+#map tiene dos argumentos una funcon y luego un iterable
+#numeros es un objeto iterable porque es una lista
+numeros = [1, 2, 3, 4, 5]
+           lo enlista finalmente
+            |     regresa un iterable por eso se usa mucho en funciones lambda
+            |     |
+cuadrados = list(map(lambda x: x**2, numeros))
+print(cuadrados) ---> [1, 4, 9, 16, 25]
+
+
+F I L T E R 
+#filter primer argumento una funcion segundo un iterable
+#filter en funcion de si es true/false realiza la accion
+numeros = [1, 2, 3, 4, 5]
+cuadrados = list(filter(lambda x: x % 2 == 0, numeros)) <--- PARES 
+print(cuadrados) ---> [2, 4]
+IMPARES serían != 0
+
+R E D U C E 
+#multiplicar todos entre ellos
+#reduce igual que map y filter tiene dos argumentos una funcion y un iterable
+from functools import reduce 
+
+numeros = [1, 2, 3, 4, 5]
+resultado = (lambda x, y:  x+y, numeros) 
+print(resultado) ---> 15 #suma de todos los elementos
+
+primera vuelta x=1 y=2
+segunda vuelta x=3 y=3
+tercera vuelta x=6 y=4 ...
+
+#lambda sobre diccionario con valor tuplas 
+ventas_y_stock = {     ventas stock ( tupla (clave,valor))     
+    "nombre juego 1": (400, 100),
+    "nombre juego 2": (50, 20)
+}                      ^   ^
+                       |   |____ el valor no me interesa por eso se representa como _
+                    ventas                  ^
+                                            |
+ventas_totales = lambda: sum(ventas for ventas, _ in ventas_y_stock.values())
+                               |
+                                \___> 400 + 50 en este caso 
+                                
+para imprimirlo: print(f"El total de ventas {ventas_totales()}")
+                                                            ^
+                                                            | imprescindible
+                                         
+                                         
+
+
+
+Hace un sumatorio de las ventas de todos aquellos juegos que se hayan vendido mas de 50 unidades.
+En este caso devolveria 400 porque 50 no es > que 50 ( del segundo juego , solo tengo dos juegos en ventas_y_stock)
+tope = 50
+                 lambda: ventas for loqetedevuelve
+                                    en este caso 
+                                    un dic con 
+                                    clave y valor = tupla
+                                        |                 |
+                                        | e l e m e n t os|                   
+                                        |                 | |  condiciones   
+                                        clave tupla 2 elem| |                                           primer elem
+                                        |      |          | |                                                  |
+                                        v      v          | |                                                  v
+ventas_totales = lambda: sum(ventas for juego, (ventas, _)  in ventas_y_stock.items() if ventas_y_stock[juego][0]>tope)
+                                        ^               ^
+                                        |               no interesa el valor  ( es el stock ) 
+                                        nombre del juego del dic ventas_y_stock sería la clave "nombre juego 1"  
+                                        porque el valor es una tupla por eje (400, 100)
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+                                  * * *  E X C E P C I O N E S  * * *
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
 
-#!/bin/sh 
+try:
+    num = 5/0 --------------------------------------
+except ZeroDivisionError                            |
+    print("No se puede dividir entre 0") <----------           
+except TypeError                                    
+    print("Solo numeros nada de strings ...") 
 
 
-# para el ctrl C 
-function ctrl_c(){
-  echo -e "\n\n[!] Saliendo...\n"
-  exit 1
-}
+try:
+    num = "hola"/0 ---------------------------------
+except ZeroDivisionError                            |
+    print("No se puede dividir entre 0")            |
+except TypeError                                    |
+    print("Solo numeros nada de strings ...") <-----
 
-#Ctrl+C
-trap ctrl_c INT
+#e l s e ( cuando va benne y no entra en las excepciones)
 
----
+try:
+    num = 7/2
+except ZeroDivisionError                            
+    print("No se puede dividir entre 0")            
+except TypeError                                    
+    print("Solo numeros nada de strings ...") 
+else:
+    print(f"El resultado de la division es {num}")
+    
+#f i n a l l y ( SIEMPRE SE VA A EJECUTAR )
 
+try:
+    num = 7/2
+except ZeroDivisionError                            
+    print("No se puede dividir entre 0")            
+except TypeError                                    
+    print("Solo numeros nada de strings ...") 
+else:
+    print(f"El resultado de la division es {num}")
+finally:
+    print("ESTO SIEMPRE SE VA A EJECUTAR Y TIENE QUE IR COMO LA ULTIMA CLAUSULA DEL TRY CATCH")
 
-#c o l o u r s
-greenColour="\e[0;32m\033[1m"
-endColour="\033[0m\e[0m"
-redColour="\e[0;31m\033[1m"
-blueColour="\e[0;34m\033[1m"
-yellowColour="\e[0;33m\033[1m"
-purpleColour="\e[0;35m\033[1m"
-turquoiseColour="\e[0;36m\033[1m"
-grayColour="\e[0;37m\033[1m"
+#r a i s e  lanzar excepciones
+x = -5
+if x < 0:
+    raise Exception("No se puede usar numeros negativos!")
 
-
-echo -e "\n${yellowColour}[+]${endColour}${grayColour} Esto es un comment${endColour}"
-
----
-
-
-#operador $() dentro de un script
-echo "[+] Esta es tu dir ip -> $(ip a | grep eth0 | awk ..... b )"  
-
-
-#c u r s o r 
-tput civis 
-.
-.
-.
-tput cnorm 
-
-#esto oculta el cursos mientras se ejecuta | <--- no se verá 
-
----
-
-#f u n t i o n 
-
-function help(){
-  echo -e "\n[+] Usage:"
-}
-
-function getMachineName (){
-  ipAddress="$1"  #<--- esto es un parametro que le llega  la funcion actua igual $1 para el primero $2 para el segundo...
-  echo -e "\n[+] La ip es $ipAddress"
-}
-
-g e t o p s ( esto es para programar como un comando con sus parametros) 
-
-#declarar variable 
-declare -i parameter_counter=0 
-
-while getops "m:uh" arg;do   #<--- acepta ./script.sh -m o -u o -h 
-  case $arg in 
-    # OPTARG dentro de un while getops recibe el valor del parametro -m maquina1 recibe maquina1 el valor de ese parametro.
-    m) machineName="$OPTARG"; let parameter_counter=1;; # sumatorio con let seria let variable +=1 por ejemplo 
-    n) let parameter_counter=2;;
-    h) help;;
-  esac 
-done 
-
-if [ $parameter_counter -eq 1];then # eq para valores enteros == para cadenas de texto 
-  searchMachine $machineName #es una funcion 
-elif [ $parameter_counter -eq 2 ];then 
-  updateFiles # es una funcion 
-else 
-  help #otra function
-fi
-
----
-
-#I F   T H EN 
-#comparar cadenas
-if [ "$cadena1" == "$cadena2"];then
-  echo "iguales"
-else
-  echo "diferentes"
-fi
-#comparar numeros
-if [ $numero1 -eq $numero2 ];then ... 
-                  1 2 3 ... 
-== cadenas
--eq -lt ... int
-
-#cadena tiene contenido 
-if [ "$cadenaquetienealgo"];then ... # significa if esta cadena tiene contenido haz lo que sea 
-
-#
----
-
-sumas en bash : 
-echo 2+5 | bc 
-echo "2+5" | bc 
-echo $((2+5))| bc 
-echo $((2+5)) 
-
----
+peta y regresa la exception : "no se pueden utilizar numeros negativos" 
 
 
----
-
-i n s i d e  s c r i p t s 
-
-$# numero de argumentos pasados al script 
-$* todos los argumentos 
-$0 nombre script 
-$1 primer arg
-$2 segndo arg ...
-
-& T H R E A D S  hilo s
-
-(echo '' > /dev/tcp/127.0.0.1/$port) 2>/dev/null && echo "[+] $port - OPEN" & <--- esto dentrod e un bucle 
-va a abrir un hilo por cada una 
-
-[[ ]] vs [ ]
-
-las dobles permiten evaluar cosas como :
-uso de () para agrupar [[ 7 < ( a + b -c ) && ( d + 1 )]]
-son mas novedosas las singles [] no permiten operaciones complejas de evaluacion en if then 
-
----
 
 
-for i in &(seq 1 3 ); do 
 
-for i in {1 .. 3}; do 
-
-diferencia entre ${UNAVARIABLE} y "${UNAVARIABLE}
-
-si UNAVARIABLE=uno dos tres   <--- un strng que contiene espacios >
-
-en un for por ejemplo la primera se evalua con tres vueltas del bucle
-la segunda con una sola CONSIDERA EL STRING COMO UNA UNIDAD INDEPENDIENTE DE SU CONTENIDO
-
-
-__________________
-A R R A Y s  array 
-__________________
-
-declare -a myArray=(1 2 3 4 5)
-
-echo ${myArray[@0]} <--- muestra el array completo 
-
-i t e r a r 
-declare -i position=0 
-for element in ${myArray[@0]};do 
-  echo "posicion ${position} --- elemento  : : : ${element}"
-  let position+=1
-done
-
-n u m e l e m e n t s 
-
-echo ${#myArray[@]} #@
-
-l a s t  e l e m e n t 
-
-echo ${myArray[-1]} <--------------------------
-                                                \
-o t r a o p ci o n                               |
-                                                 |
-total-elements=${#myArray[@]}                   / 
-echo ${myArray[$(($total-elements-1))]}  <-----
-
-Si quieres hacer operaciones recuerda: 
-
-$((valor1+valor2))
-
-$((${myArray[0]}+${myArray[1]}))
-
-
-a ñ a d i r  v a l o r e s  a l  a r r a y 
-
-myArray+=(5) 
-
-e l i m i n a r  e l e m e n t o s 
-  
-unset myArray[0]   <--- el primero 
-unset myArray[-1]  <--- el último 
-
-IMPORTANTE despues se usar unset hay que redeclarar el Array para que se guarde bien y sea capaz de encontrar los elementos por posicion:
-
-myArray=(${myArray[@]})    <--- importante entre () 
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
-#                                                 * * * S H E L L L S  * * *
+                                  * * *  M O D U L O   * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+Archivo de python que contiene definiciones de clases, variables y funciones, pueden ser importados. 
+Librerías / packages ... 
+
+#1 modulo de archivo que te has generado 
+import unarchivodepythonconfunciones <--- sin el .py importa todas 
+print(unarchivodepythonconfunciones.suma(3,2))
+5
+
+from unarchivodepythonconfunciones suma, resta, multiplicacion division <--- sin el .py y lo busca en el mismo directorio 
+print ()
+
+---
+
+#2 modulo incorporado
+
+import math 
+print(dir(math)) ---> regresa propiedades tipo : pi pow prod radians ... 
+
+y si solo necesitas importar una de ellas : 
+from math import pow
+
+---
+para ver todos los modulos incorporados al propio interprete en python :
+ 
+import sys 
+print(sys.builtin_module_names)
+
+por ejemplo hashlib  no viene has de importarlo si lo requieres
+            _______
+
+#3 modulo no incorporado, necesario descargar 
+import hashlib 
+hashlib.md5(b"cadenaconlabdeformatobitsdelante").hexdigest()
+            ^
+print(hashlib.__file__) ---> /usr/lib/python3.9/hashlib.py  <--- por si necesitas ampliar conocimiento de algun metodo y demas
+                                                                 puedes abrirlo y revisarlo 
+                                                                                                                             
+
+
+---
+I M P O R T A C I O N E S 
+---
+
+import math as m 
+print(m.sqrt(49)) ---> 7 
+
+from math import sqrt as raiz
+print(raiz(49)) ---> 7
+
+Python library Hijacking 
+cuando en el interprete de python >>>> haces import sys
+
+>>> import hashlib
+>>> import sys 
+>>> print(sys.path)  <--- esta es la cadena de sistios por los que busca cada import por primera vez ) 
+['', '/usr/lib64/python311.zip', '/usr/lib64/python3.11', '/usr/lib64/python3.11/lib-dynload', '/home/abenito/.local/lib/python3.11/site-packages', '/usr/lib64/python3.11/site-packages', '/usr/lib/python3.11/site-packages']
+  ^
+  | esta es la clave intenta buscar el modulo primero en el dir de trabajo 
+  por lo que puedes crearte uno con el nombre de hashlib u otro que sepas que se 
+  importa y cuando vaya a usarlo usara el tuyo es una suplantacion 
+  y si en el tuyo tiras de import  os ojo que esto te permite 
+  ejecutar con root
+
+
+>>> print(hashlib.__file__) -------------- ^
+/usr/lib64/python3.11/hashlib.py --------- /
+ 
+
+puedes montarte tu propio archivo : hashlib.py 
+
+
+
+
+
+
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+                                  * * *  P a c k a g e   * * *
 ____________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________
 
 
-s h e l l s 
+Objetivo, crear un paackage propio y subirlo a :
+Pypi ( python package index )
 
+pip3 install pwntools <--- viene de https://pypi.org 
 
+hay que crear una cuenta vincular el movil 
 
-~ ❯ cat /etc/shells
-/bin/sh
-/bin/bash
-/usr/bin/sh
-/usr/bin/bash
-/usr/bin/tmux
-/bin/tmux
-/usr/bin/zsh
-/bin/zsh
-
-echo $SHELL
-
-/bin/zsh 
-
-Sobre la terminal NO dentro de un script ( que indica el nombre del script ) 
-
-echo $0 
-
-zsh te regresa ---> util saber que $0 es la shell porque a veces vamos a necesitar ejecutar $0 
-command $0
-
-cat !$  <--- deposita el ultimo output del ultimo comando 
----
-
-
-T E R M S 
-
-no hace Ctrl l  ( clear )
-TERM=xterm
-
-ctrl k   borra toda la linea 
-
+touch /root/.pypirc 
+    [pypi]
+        username= __token__
+        password = pypi-Agecsdvqdckp´dmcomtarç+delesepovcmeqfpovfeqveqwq <--- generado en la pagina perfil > account settings > api tokens 
 
 ---
 
+abrpackage
 
-t t y ( tele type writer) is a device 
-the terminal session running a shell process is associated with a TTY 
+mkdir abrpackage 
 
-ps -fea | grep bash 
-501 29874 19345 0 11:00PM ttys007 0:00:01 bash 
-501 29832 29874 0 11:00PM ttys007 0:00:00 grep bash
+touch README.md setup.py
 
-tty command exposes your terminal running 
-/dev/ttys007 <--- 
+# cada paquete un directorio y dentro un __init__.py 
+cd abrpackage
 
 
-cuando corres algo con nohup y & desasocias que corra asociado a un TTY por eso si haces ps -fea 
-en lugar de tty tendra ?? 
+touch __init__.py <--- from .modulo1 import *  ESTO ES ARA QUE LUEGO PUEDAS HACER import modulo1 y pista 
+                       from lodulo2 import * 
+vi modulo1.py
+   def list_courses():
+   .
+   .
+   .
 
-501 29874 19345 0 11:00PM ?? 0:00:01 talscript execuion nohup &
-
-
-
-
----
-s t r a c e 
-
-strace -T ---> timinginformation
-strace -f ---> trace child process 
-strace -p ---> trace parent process 
-
-strace -Tfp < process id >
-
-d e b u g 
-
-run this before run script 
-sudo strace -Tfp $$ 2>&1 | grep -E 'execve' & 
-
--/runscript.sh 
-
-and strace will show you call var systems 
-
----
+vi modulo2.py
 
 
+con lo que has puesto en __init__ puedes hacer:
+from abrpackage import list_courses() y puedes instanciarlo INSTEAD OF from abrpackage.modulo1 import list_courses()
+list_courses()
+ 
 
-s u b  s h e l l s  f
-M U Y  U T I L 
+tree 
+|__ abrpackage 
+|   |
+|   |--- modulo1.py
+|   |--- __init__.py
+|   --- modulo2.py
+|---Readme.md
+|__ setup.py
 
-(date -u )
-regresara:
-Fri Jul 5 21:34:12 UTC 2023
-
-pero esto trata de ejecutar la string que devuelve la propia ejecucion de date : 
-"Fri Jul 5 21:34:12 UTC 2023"
-
-$(date -u) y regresa logicamente command not found 
-bash: Fri: command not found 
-
-
-
----
-
------------------------------------------  B A C K L O G ----------------------------------
-
---- 
-
-EN DESUSO UTILIZO KITTY AHORA
+para subir el package a pypi hay que incluir info en el setup.py 
 
 
-T M U X 
-_______
+from setuptools import setup, find_packages
 
-c r e a t e  s e s s i o n
-tmux new -s nombreSesion
+# Leer el contanido del archuvo READE.md
 
-ctrl b ,        ---> renombra ventana 
-ctrl b shift 4  ---> rename sesion 
+with open("Readme.mc", "r", encoding="utf-8") as fh:
+    long_description = fh.redad()
+    
+setup(
+    name="abrpackage",
+    version="0.0.1",
+    packages=find_packages(),
+    install_requires=[],
+    author="ABR",
+    description="lo que sea",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://abrpackage.io",
+)
 
-c r e a t e  w i n d o w 
-ctrl b c        ---> crea una ventana nueva 
+python3 -m build 
 
-s e l e c t  w i n d o w 
-ctrl b 1 
-       2
-       3  ... posiciona en ventana
+esto genera un dir nuevo llamado dist 
 
-ctrl b m        ---> permite que por medio de mouse selecciones la ventana ( se desactiva igual )
-
-
-D E T A C H E D 
-ctrl b d   
-
-──╼ $tmux list-sessions
-0: 3 windows (created Mon Dec  4 10:38:56 2023)
-albertosesion: 3 windows (created Mon Dec  4 10:47:17 2023)
-
-tmux attach -t albertosesion  y a dentro
+luego para subirla: twine upload dist/* --verbose 
 
 
-s p l i t  p a n e l 
-ctrl b shift 2  ---> para generar paneles HORIZONTALES dentro de cada ventana
-ctrl b shift 5  ---> para generar paneles VERTICALES dentro de cada ventana
-
-ctrl b o        ---> la letra O para moverte por los paneles
-ctrl b flechaUP/Down posiciona 
+pip3 cache purge ( es un comando para limpiar la cache ) 
 
 
-m o v i n g  i n s i d e  p a n e l 
-ctrl b manten el control pulsado y flecha arriba o abajo 
-
-moving panel content between panels 
-ctrl b  sueltas altgr [ 
-
-c o p y 
-ctrl shift c  ( lo que ya hayas seleccionado con el raton o teclas )
-ctrl shift v
-
-otra manera en el modo copia en oh my tmux: <--- solo funciona en ohmytmux 
-ctrl b  sueltas altgr [ 
-    luego ctrl espace  para comenzar con la seleccion hasta flecha o tecla fin 
-    alt w  copia lo que hayas seleccionado
-
-ctrl b  sueltas y altgr ]  lo pega
-
-k i l l  p a n e l 
-ctrl b x        ---> kill panel 
 
 
-ctrl b w <--- ves todas las sesiones y todas las ventanas y te permite moverte inside 
+
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+                                  * * * I n p u t / O u t p u t * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+
+name = input("\n[+] Give me a name : ")
+print(f"\n[+] Your name is : {name}")
+      ^
+      para que interprete la variable name como tal {}
+
+typecating to numbers:
+
+age = int(input("\n[+] Give your age :"))
+print(f"\n[+] your next birthay will be {age+1} years")
+
+
+try:
+    age = int(input("\n[+] Give your age :"))
+    print(f"\n[+] your next birthay will be {age+1} years")
+    break
+except ValueError:
+    print(f"\n[+] The input data type is not correct")
+
+
+Para ocultar el output 
+     se importa como un modulo pero es un script realmente del interprete <----
+        ^                                                                      |
+from getpass import getpass <--- parece una function pero es una var           |
+     ---------------------------------------------------------------------------                                                           
+    |
+python3 
+
+>>> import getpass 
+>>> print(getpass,__file__)
+/usr/lib/python3.9/getpass.py
+>>>
+
+puedes hacerle cat y ves como funciona 
 
 ---
 
+from getpass import getpass
+password = getpass(input("\n[+] Give your password :"))
+print(f"\n[+] The password is {password}")
+
+
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+                                  * * * R e a d  / W r i t e  FILE * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+
+f = open("/etc/hosts", "r") ---> Readme
+f = open("/etc/hosts", "a") ---> Write append añade a lo que ya exista 
+f = open("/etc/hosts", "w") ---> Write y no conserva el contenid previo 
+
+f.write("Hi!\n")
+f.close()
+
+ya no podrias seguir usandolo sin hacer un open : f.write("writing!\n")
+
+#write
+with open("example.txt","w") as f:   <--- es más óptimo python se ocupa de cerrarlo y evitar errores
+    f.write("Hi!")    
+    
+tambien se puede con el print : 
+    print("Hi!", file=f)
+
+Para escribir desde una lista en un archivo: 
+
+lista = ["Primera linea\n", "Segunda Linea\n", "Tercera linea\n"]
+
+with open("example.txt", "w") as f:
+    f.writelines(lista)
 
 
 
 
+#read 
+with open("example.txt","r") as f:   <--- es más óptimo python se ocupa de cerrarlo y evitar errores
+    file_content = f.read()    
+print(file_content)
+
+
+#read
+si quieres ir leyendo linea por linea y que muestre el contenido, es un objeto iterable:
+#read line in f NO crga en memoria el archivo entero, es muy óptimo
+with open("example.txt","r") as f:   <--- es más óptimo python se ocupa de cerrarlo y evitar errores
+    for line in f:    
+        print(line.strip()) <--- strip para quitar \n de cada linea 
+        
+"r" = read pero si el archivo contiene binario o caracteres que se dan de ostias ocn unicode mejor "rb" raw binary
+
+
+#read Con readlines() carga en memoria el archivo entero CUIDADO
+with open("example.txt","rb") as f:   <--- es más óptimo python se ocupa de cerrarlo y evitar errores
+    for line in f.readlines(): <----------------     
+        print(line.strip())  
+        
+Es util para leer la Primera linea: en lugar de readlines() usar readline()
+
+
+#b i n a r i o s 
+with open("/ruta/foto.png","rb") as f_in, open("image.png", "wb") as f_out:
+    file_content = f_in.read()   # todo el contenido del archivo lo mete en file_content
+    f_out.write(file_content)    # lo guardo en image.png que es el f_out 
+
+
+
+
+
+
+
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+                                  * * * Librería os manejo de archivos y directorios  * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+#os.path existe archivo 
+import os 
+if os.path.exists("mi_fichero.txt"):
+    print(f"\n[+] El archvo existe\n")
+else:
+    print(f"\n[!] El archivo No existe\n")
+
+#os.mkdir existe directorio y si no lo creo 
+import os 
+if not os.path.exists("mi_directorio"):
+    os.mkdir("mi_directorio_que_no_existia"
+    
+#os.makedirs permite crear directorios anidados 
+import os 
+if not os.path.exists("mi_directorio/mi_subdirectorio"):
+    #como no existe puedes crear los dos a la vez
+    os.makedirs("mi_directorio/mi_subdirectorio"
+    
+#os.listdir listar ficheros y dirs NO RECURSIVO 
+import os 
+print(f"\n[+] Listando todos los recursos del directorio actual de trabajo:\n")
+recursos = os.listdir()
+
+for recurso in recursos:
+    print(recurso)
+
+#os.remove borrar 
+import os 
+if os.path.exists("mi_file1.txt"):
+    os.remove("mi_file1.txt"
+       rmdir  para directorios SIN CONTENIDO
+
+#shutil ---> modulo que amplia
+
+import os 
+import shutil 
+if os.path.exists("mi_directorio"):
+    shutil.rmtree("mi_directorio") ---> Borra directorios CON CONTENIDO 
+
+#os.rename renombrar
+os.rename("nombreorigen", "nombredestino")
+
+#os.path.getsize tamaño de un archivo 
+tamaño = os.oath.getsize("archivo") ---> en bytes 
+
+
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+                                  * * *  R E D  c o n e x i o n e s * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+T C P 
+_____
+
+
+s e r v e r 
+
+/kvmdir/wdir/manuals/hack/python/scripts/00_sockets_server.py 
+
+import socket 
+# Esto es igual a nc -nlvp 1234
+#                                   IPv4            TCP
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_address = ('localhost', 1234)
+server_socket.bind(server_address)
+# ya estoy en escucha acepta conexiones entrantes 
+#limite de conexiones 
+server_socket.listen(1) # acepto una unica conexion
+
+while True:
+    #el cliete te envia todo esto: 
+    #socket cliente la direccion y puerto que abre de origen     
+    client_socket, client_address = server_socket.accept()
+    #tamaño de mensaje en formato bytes
+    data = client_socket.recv(1024)
+
+    print(f"\n[+] Mensaje recibido del cliente: {data.decode()}")
+    print(f"[+] Informacion del cliente que se ha comunicado con nosotros: {cliente_sddress}")
+                                                #formato bytes ( envio data en socket formato bytes )
+    client_socket.sendall(f"Un saludo crack!\n".encode())
+    client_socket.close()
+
+#   ejecutando 
+
+/kvmdir/wdir/manuals/hack/python/scripts/00_sockets_server.py 
+
+[+] Mensaje recibido del cliente: hola caracola!
+
+[+] Informacion del cliente que se ha comunicado con nosotros: ('127.0.0.1', 34110)
+
+
+
+y el cliente de netcat nc:
+
+~ ❯ nc localhost 1234                                                                                                                                                11s
+hola caracola!
+Un saludo crack! <--- esto lo retorna el code, como le cierra la conexion no puede envar mas mensajes el cliente 
+
+
+
+c l i e n t 
+
+/kvmdir/wdir/manuals/hack/python/scripts/00_sockets_client.py 
+
+
+import socket 
+# Esto es igual a nc -nlvp 1234
+#                                   IPv4            TCP
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_address = ('localhost', 1234)
+client_socket.connect(server_address)
+# con etsto conecta con el server 
+
+try:
+    message = b"Este es un mensaje de prueba que estoy enviando al servidor"
+    client_socket.sendall(message)
+    data = client_socket.recv(1024)
+
+    print(f"\n[+] El aserividor nos ha respondido con este mensaje: {data.decode()}")
+finally:
+    client_socket.close()
+
+____________________________________________________________________________________________________________________________________
+
+Perfeccionando el server
+
+/kvmdir/wdir/manuals/hack/python/scripts/02_sockets_server_perfeccionado.py 
+
+import socket 
+
+def start_server():
+
+    host = 'localhost'
+    port = 1234
+
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind(host,port)
+        print (f"\n[+] Servidor en escucha n {host}:{port}")
+        s.listen(1)
+        conn, addr = s.accept()
+
+        with conn:
+            # una vez que sales del with tambien cierras el descriptor de archivo del cliente 
+            print(f"\n[+] Se ha conectado un nuevo cliente: {addr}")
+            while True:
+                data = conn.recv(1024)
+                #si no envia nada el cliente salgo del bucle infinito un ctrl^C del cliente se interpretara como vacio y cierra la conn.
+                if not data:
+                    break
+                #cualquier cosa que me escriba se lo devuelvo de vuelta
+                conn.sendall(data)
+
+start_server()
+
+Perfeccionando el client : 03_sockets_client_perfeccionado.py
+
+import socket
+
+def start_client():
+
+    host = 'localhost'
+    port = 1234
+
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect((host, port))
+        s.sendall(b"Hola, servidor!")
+        data = s.recv(1024)
+    print(f"\n [+] Mensaje recibido del servidor: {data.decode()}")
+
+start_client()
+
+
+
+U D P 
+_____
+
+import socket
+def start_udp_server():
+
+    host = 'localhost'
+    port = 1234
+
+    #UDP 
+    with socket.socket(socket.AF_INET, socket.sock_DGRAM) as s:
+         s.bind((host, port))
+         print(f"\n[+] Servidor UDP iniciado en {host}:{port}")
+
+         while True:
+            data, addr = s.recvfrom(1024)
+            print(f"\n[+] Mensaje enviado por el cliente: {data.decode()}")
+            print(f"\n[+] Información del cliente qe nos ha enviado el Mensaje: {addr}")
+start_udp_server()
+
+
+
+
+b a c k l o g 
+____________________________________________________________________________________________________________________________________
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+____________________________________________________________________________________________________________________________________
+
+                                  * * *  O r i e n t a c i o n  O b j e t o s  * * *
+____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+Concepto: Self hace referencia al objeto ( objalb en este caso ) que le llega a la clase.
+
+
+                                                            ___ esto no esta pero esta es el self
+class Persona:                                             /
+    #constructor qu no deja de ser un metodo               v
+    def __init__(self, nombre, edad=21): # Persona.__init__(objalb,nombre, edad)
+                                    ^
+        self.nombre = nombre        |___ si no le llega nada del objeto por defecto valdra 21 
+        sef.edad = edad 
+    
+    def saludo(self): #Persona.saludo(objalb) <--- el objeto que le llega de la instanciacion
+        return f"Hola,soy {self.nombre} y tengo {self.edad} años!"
+    
+---    
+    
+objAlb = Persona("Alb", 39) #<--- objeto de la clase
+objEva = Persona("Eva")
+print(objAlb.saludo()) ---> Hola, soy Alb y tengo 39 años!
+print(objEva.saludo()) ---> Hola, soy Eva y tengo 21 años!
+ 
+
+
+Concepto: Comprender como actualizar valores del objeto :
+
+class CuentaBancaria:
+    def __init__(self, cuenta, nombre, dinero=0):
+        self.cuenta = cuenta
+        self.nombre = nombre
+        self.dinero = dinero
+        
+    def depositar_dinero(self, dinero):
+        self.dinero += dinero
+        return f"\n[+] Se han depositado {dinero}" euros, el balance actual de la cuenta es {self.dinero} euros."
+    
+    def retirar.dinero(self, dinero):
+        if dinero > self.dinero:
+            return f"\n[+] Operación no permitida, no dispone de fondos suficientes."
+        
+        self.dinero -= dinero
+        return f"\n[+] Se han extraido {dinero} eurs d ela cuenta, y el balance actual es {self.dinero}"
+
+---
+objAlb = CuentaBancaria("1229802383", "alb y eva account", 1000)
+print(objAlb.depositar_dinero(500)) ---> Se han depositado 500 euros, el balance actual de la cuenta es 500 euros.
+print(objAlb.retirar_dinero(2000))  ---> Operación no permitida, no dispone de fondos suficientes.
+print(objAlb.retirar_dinero(200))   ---> Se han extraido 200 euros de la cuenta, y el balance actual es de 300 euros.
+
+
+Concepto: Decoradores y métodos específicos.
+
+class Rectangulo: 
+    def __init__(self, ancho, alto):
+        self.ancho = ancho
+        self.alto = alto
+    
+    @property #<-------- rect1.area 
+    def area(self) # le llega el objeto que ha definido en el constructor ancho y largo sobre self
+        return self.ancho * self.alto 
+
+    def __str__(self):
+        return f"\n[+] Propiedades del rectángulo: [Ancho: {self.ancho}][Alto: {self.alto}]"
+    def __eq__(self, otro):
+        return self.ancho = otro.ancho and self.alto = otro.alto
+         
+---
+
+rect1 = Rectangulo(10, 20)
+rect2 = Rectangulo(5, 5)
+
+
+
+printf(f"\n[+] el área es {rect1.area()}") ---> El área es 1600 
+
+#d e c o r a d o r                                      ^
+#si le plantas el decorador @property no hace falta ()
+printf(f"\n[+] el área es {rect1.area}") ---> El área es 1600  
+#permite acceder al valor de retorno del metodo 
+#ese es el concepto de @property como tal
+                                    ^
+
+#m e t o d o s  e s p e c i a l e s
+__str__
+print(rect1) #con __str__ definimos lo que ha de mostrar en caso de tratar de imprimir un objeto ( si no lo defines imprime obj type ...)
+__eq__ 
+print(f"\n[+] ¿Son iguales los dos rectángulos? -> {rect1 ==rect2}")# esto hace magia, al estar definido __eq__ regresa true o false 
+
+
+
+concepto: metodos normales self : operaciones que deben realizarse en la instancia 
+funcionalidad dependiente de la instancia concreta.
+__________________________________________________ 
+
+class Persona: 
+    total_personas = 0
+    
+    def __init__(self, nombre):
+        self.nombre = nombre
+    def saludar(self):
+        print("Hola", self.nombre) #necesitas instanciar para saludar a cada uno personalmente, hola juan hola pepe 
+    def presentacion(self):
+        print(f"Hola soy {self.nombre}")   
+        
+
+alb = Persona("alberto")
+alb.presentacion() ---> Hola soy alberto
+ ^
+ |
+objeto 
+
+Más de self : 
+    class Calculadora:
+        def __ini__(self, numero): #CAlculadora.__init__(calc, numero)
+            self.numero = numero # calc.numero = 5
+           
+concepto: metodo de clase cls : operaciones que deben realizarse en la clase DEPENDEN DE LA CLASE LLAMANTE EN HERENCIA
+funcionalidad dependiente de atributos de clase.
+________________________________________________
+
+class Persona: 
+    total_personas = 0
+
+    def __init__(self, nombre):
+        self.nombre = nombre
+        Persona.total_personas + 1
+    
+    @classmethod
+    def contar_personas(cls): # si llamas a este metodo de clase se crea una instancia de clase y se incrementa el contador total personas
+        return f"+ 1 persona"
+
+concepto: metodo estático : son llamados sin crear una instancia, se llaman directamente desde la clase MiClase.metodo_estatico()
+funcionalidad NO dependiente de instancia ni de Atributos de clase.
+___________________________________________________________________ 
+
+class MiClase:
+    variable_clase ="A"
+    
+    @staticmethod
+    def metodo_estatico():
+        return variable_clase + variable_clase ---> AA
 
 ---
 
-s e c u r i t y 
+Más ejemplos:
+    
+class Libro:
+    IVA = 0.21
+    
+    def __init__(self, titulo autor, precio):
+        self.titulo = titulo
+        self.autor = autor
+        self.precio = precio 
+        
+    @staticmethod
+    def es_bestseller(total_ventas): #Libro.es_bestseller(mi_libro, total_ventas)
+        return total_ventas > 5000
+    
+    @classmethod
+    def precio_con_iva(cls, precio):
+        return precio + precio * cls.IVA
+
+class LibroDigital(Libro): # <--- hereda de Libro
+      #otro iva para los libros digitales
+      IVA = 0.1
 
 
-s h a d o w 
-donde se define el metodo de encyptacion del shadow :
+mi_Libro = Libro("El quijote", "Cervantes", 100)
+print(f"\n[+] El precio del libro con IVA es de {Libro,precio:con_iva(mi_libro.precio)}")
 
-~ ❯ cat /etc/login.defs| grep -i encrypt_method
-ENCRYPT_METHOD YESCRYPT
-
-~ > cat /etc/shadow                                          
-root:$y$j9T$r2WpoGEI6tKS6 <--------------------- 
+#para el ejemplo de digital 
+mi_libro_digital = Libro("El quijote2", "Cervantes", 100)
+print(f"\n[+] El precio del libro con IVA es de {LibroDigital,precio:con_iva(mi_libro_digital.precio)}")
+#SI EN LUGAR DE @classmethod HUBIERA SIDO @staticmethod  el IVA sobre el digital no se hubiera aplicado
+#PARA ESO ES UN CLASSMETHOD PARA QUE DEPENDA DE LA CLASE LLAMANTE AQUI EN HERENCIA SE VE MEJOR QUE ANTES
 
 ---
 
+Concepto: refuerzo metodos estaticos.
+
+class Calculadora:
+    
+    @staticmethod
+    def suma(num1, num2):
+        return num1 + num2
+    @staticmethod
+    def resta(num1, num2):
+        return num1 - num2
+    @staticmethod
+    def multiplicacion(num1, num2):
+        return num1 * num2
+    @staticmethod
+    def dividir(num1, num2):
+        return num1 / num2 if num2 !0 0 else "\n[!] Error: No se puede dividir un número entre cero\n"
+
+print(Calculadora.suma(2, 8))
+print(Calculadora.resta(2, 8))
+print(Calculadora.multiplicacion(2, 8))
+print(Calculadora.dividir(2, 8))
+
+Concepto: refuerzo metodos de clase y estaticos:
+
+class Estudiantes:
+    
+    #VARIABLE DE CLASE
+    estudiantes = []
+    
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+        Estudiantes.estudiantes.append(self)
+    
+    #no necesita self no trabaja sobre la instancia
+    @staticmethod
+    def es_mayor_de_edad(edad):
+        return edad >= 18
+    
+    #esto genera un estudiante y no inserta en la lista de estudiantes con append
+    @classmethod
+    def crear_estudiante(cls, nombre, edad):
+        if cls.es_mayor_de_edad(edad):
+            return cls(nombre, edad)
+        else:
+            print(f"\n[!] Error: El estudiante {nombre} es menor de edad\n")
+    
+    @staticmethod
+    def mostrar_estudiante(): #iterar por estudiantes
+        for i, estudiante in enumerate(Estudiantes.estudiantes):
+            print(f"\t[+] estudiante número [{i+1}]: {estudiante.nombre}")
 
 
+Estudiantes.crear_estudiante("primerEstudiante", 43)
+Estudiantes.crear_estudiante("segundoEstudiante", 15)
+Estudiantes.crear_estudiante("tercerEstudiante", 12)
+
+Estudiantes.mostrar_estudiantes()
 
 
+FALTAN PROPIEDADES DECORADORES ... 
 
-examen:
-
-
-
-
-
-la de iterar con xargs 
-xargs -I {} printf "value = %s\n" {} <g 
+---
